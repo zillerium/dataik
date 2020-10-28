@@ -1,6 +1,9 @@
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
+const https = require('https');
+const fs = require('fs');
+var app = express();
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
@@ -28,6 +31,12 @@ var schema = buildSchema(`
      
   }
 `);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // If Pt had any complex fields, we'd put them on this object.
 class Pt {
@@ -59,12 +68,27 @@ var root = {
   },
 }; 
 
-var app = express();
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true,
 }));
-app.listen(4000, () => {
-  console.log('Running a GraphQL API server at localhost:4000/graphql');
+
+const privateKey = fs.readFileSync('privkey.pem', 'utf8');
+const certificate = fs.readFileSync('fullchain.pem', 'utf8');
+const ca = fs.readFileSync('0000_csr-certbot.pem', 'utf8');
+
+const credentials= {
+  key: privateKey,
+  cert: certificate
+}
+
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(4000, () => {
+    console.log('HTTP Server running on port 4000');
 });
+
+//app.listen(4000, () => {
+  //console.log('Running a GraphQL API server at localhost:4000/graphql');
+//});

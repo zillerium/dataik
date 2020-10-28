@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <script id="testscript" src="./script.js" type="text/javascript" defer></script>
+      <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+      <title>Whereami - tracking devices and people</title>
+      <!-- Bootstrap core CSS -->
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+   </head>
+   <body >
+      <div class="container">
+         <div class="row">
+            <div class="col-6">
+               <h1>Whereami Test Page</h1>
+            </div>
+         </div>       
+         <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-2">
+               <button id="graphqlbtn"  class="btn btn-outline-primary"
+                  type="button" onclick="graphqlbtn()">  Test GraphQL </button>
+            </div>
+            <div class="col-md-3">
+               <input type="text" class="form-control" placeholder="ownerId"
+               id="ownerId" aria-label="ownerId"
+               aria-describedby="ownerId">       
+            </div>
+            <div class="col-md-3">
+               <input type="text" class="form-control" placeholder="latitude"
+               id="latitude" aria-label="latitude"
+               aria-describedby="latitude">
+            </div>
+            <div class="col-md-4">
+               <input type="text" class="form-control" placeholder="longitude"
+               id="longitude" aria-label="longitude"
+               aria-describedby="longitude">
+            </div>
+         </div>
+         <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-12">
+               <p id="message" ></p>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
